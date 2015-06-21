@@ -1,5 +1,5 @@
 library(UsingR)
-library(caret)
+
 data(iris)
 
 shinyServer(
@@ -14,18 +14,7 @@ shinyServer(
             # define if we want color charts
             is_color <- input$colorSpecies
             # create data partition
-            inTrain = createDataPartition(y=iris$Species, p=0.7, list=FALSE)
-            training <-iris[inTrain,]
-            testing <-iris[-inTrain,]
-            modrf<-train(Species~., data=training, method="rf")
-            predrf<-predict(modrf,testing)
-            model_acuracy<-confusionMatrix(predrf,testing$Species)
             new_data<-data.frame( Sepal.Length=SepLength, Sepal.Width=SepWidth,Petal.Length=PetLength,Petal.Width=PetWidth)
-            data_species<-predict(modGbm,new_data)
-            new_data$Species<-data_species
-            output$predicted_species<-renderPrint({as.character(data_species)}) 
-            model_accuracy<-confusionMatrix(predGbm,testing$Species)$overall['Accuracy']
-            output$model_accuracy<-renderPrint({round(as.double(model_accuracy),4)*100}) 
             idx <- subset(expand.grid(x=1:4,y=1:4),x!=y)
             i <- 1
             if(!is.null(is_color))

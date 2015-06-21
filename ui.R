@@ -12,25 +12,21 @@ shinyUI(fluidPage(
                                 submitButton('Submit')
                             ),
                             mainPanel(
-                                plotOutput('myIris'),
-                                h4('The Random forest prediciton algorightm has the following accuracy(%):'),
-                                verbatimTextOutput("model_accuracy"),
-                                h4('The parameters you chose gave a prediction of:'),
-                                verbatimTextOutput("predicted_species")
+                                plotOutput('myIris')
                             )
                         )
                     ),
                tabPanel("help",
                         h2('General'),
                         h5('This application uses the Iris dataset, plots it on the screen using a pairs chart; allows the user to define an iris flower with specific characteristics and predicts what species the flower will be'),
-                        h5('It splits the original Iris dataset into a training set with 70% of the data, and a test set with the remaining 30%. The prediction algorithm is the random forest algorithm.'),
                         h5('The resulting blue cross on the chart is the new flower according to the user specification.'),
+                        h5('The screen is not updated untill the submit button is pushed.'),
                         h2('Left panel with the sliders, checkbox and submit'),
                         h5('The sliders allow you to change the parameters of the iris flower'),
                         h5('The color checkbox will allow to separate the iris species by color'),
                         h2('Right panel'),
                         h5('This panel displays a pairs chart in color/black and blue according to the checkbox selection'),
-                        h5('It also shows the accuracy of the prediction model and the resulting species of flower predicted by the model based on the user characteristics')
-                )
-    )
+                        h5('The blue cross is the user choice')
+               )
+        )
 ))
